@@ -3,7 +3,7 @@ const { EventController } = require("../controllers/EventController");
 const EventRoutes = express.Router();
 
 EventRoutes.get("/", EventController.getAll);
-EventRoutes.get("/:id", EventController.getById);
+EventRoutes.get("/:name", EventController.getByCategory);
 EventRoutes.post("/", EventController.add);
 EventRoutes.delete("/:id", EventController.deleteById);
 

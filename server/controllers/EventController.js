@@ -1,3 +1,4 @@
+const { Category } = require("../models/Category");
 const { Event } = require("../models/Event");
 
 const EventController = {
@@ -12,20 +13,29 @@ const EventController = {
         res.status(500).json(err);
       });
   },
-  getById: (req, res) => {
-    const id = req.params.id;
-    Event.findById(id)
-      .then((data) => {
-        if (data) {
-          res.json(data);
+  getByCategory: (req, res) => {
+    const inputName = req.params.name;
+    Category.findOne({ name: inputName }) 
+      .then((category) => {
+        if (category) {
+          Event.find({ category: category._id })
+            .populate("category") 
+            .populate("place")
+            .then((data) => {
+              res.json(data);
+            })
+            .catch((err) => {
+              res.status(500).json(err);
+            });
         } else {
-          res.status(404).json({ msg: "Not found!" });
+          res.status(404).json({ msg: "Category not found!" });
         }
       })
       .catch((err) => {
         res.status(500).json(err);
       });
   },
+  
   add: (req, res) => {
     const event = new Event({
       name: req.body.name,
