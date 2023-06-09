@@ -1,6 +1,5 @@
 const { Category } = require("../models/Category");
-// const { v4: uuidv4 } = require("uuid");
-// var fs = require("fs");
+
 
 const CategoryController = {
   getAll: (req, res) => {

@@ -28,6 +28,7 @@ const PlaceController = {
   add: (req, res) => {
     const place = new Place({
       name: req.body.name,
+      city: req.body.city,
       address: req.body.address,
     });
     place.save();

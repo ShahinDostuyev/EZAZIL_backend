@@ -2,6 +2,7 @@ const { default: mongoose } = require("mongoose");
 
 const placeSchema = new mongoose.Schema({
   name: String,
+  city: String,
   address: String
 });
 
